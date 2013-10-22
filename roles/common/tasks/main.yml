@@ -1,0 +1,5 @@
+- name: ensure the app user exists
+  user: name={{ app_user }}  comment="PetShop app" uid=1040 shell=/bin/bash generate_ssh_key=yes ssh_key_bits=2048
+
+- name: ensure curl is installed
+  apt: pkg=curl state=present update_cache=yes

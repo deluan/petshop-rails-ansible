@@ -1,0 +1,5 @@
+[webservers]
+www.petshop.example.com ansible_ssh_user=vagrant
+
+[dbservers]
+db.petshop.example.com ansible_ssh_user=vagrant

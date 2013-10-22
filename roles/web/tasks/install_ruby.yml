@@ -1,0 +1,55 @@
+---
+- name: Install rvm
+  shell: curl -L https://get.rvm.io | bash -s stable creates=/usr/local/rvm/bin/rvm
+  tags: ruby
+
+- name: Install rvm requirements
+  shell: /usr/local/rvm/bin/rvm requirements
+  tags: ruby
+
+- name: Install ruby
+  shell: /usr/local/rvm/bin/rvm install ruby-{{ruby_version}}
+  tags: ruby
+
+- name: Copy gemset script
+  template: src=rvm-gemset.sh dest=~/ mode=0744
+  tags: ruby
+
+- name: Setup gemset
+  shell: ~/rvm-gemset.sh
+  tags: ruby
+
+- name: Install passenger
+  gem: name=passenger version=4.0.14
+
+- name: Install passenger nginx module
+  shell: passenger-install-nginx-module -a
+
+
+#- name: install rb-installer
+#  shell: curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+#
+#- name: update PATH in ~/.bash_profile for rb-env
+#  lineinfile: dest=/home/{{ app_user }}/.bashrc line=export\ PATH="$HOME/.rbenv/bin:$PATH" regexp=PATH.*rbenv
+#
+#- name: add rb-env init to ~/.bash_profile
+#  lineinfile: dest=/home/{{ app_user }}/.bashrc line='eval "$(rbenv init -)"' regexp=eval.*rbenv
+#
+#- name: install ruby
+#  action: shell /home/{{ app_user }}/.rbenv/bin/rbenv install $ruby_version creates=/home/{{ app_user }}/.rbenv/shims/ruby
+#
+#- name: make ruby global
+#  action: shell /home/{{ app_user }}/.rbenv/bin/rbenv global {{ ruby_version }}
+#
+#- name: bootstrap any missing packages
+#  action: shell /home/{{ app_user }}/.rbenv/bin/rbenv bootstrap-ubuntu-12-04
+#  sudo: yes
+#
+#- name: bootstrap rbenv
+#  action: shell /home/{{ app_user }}/.rbenv/bin/rbenv bootstrap
+#
+#- name: install passenger
+#  action: shell PATH=/home/{{ app_user }}/.rbenv/bin:$PATH /home/{{ app_user }}/.rbenv/shims/gem install passenger creates=/home/{{ app_user }}/.rbenv/shims/passenger
+#
+#- name: initialize rbenv
+#  action: shell bash /home/{{ app_user }}/.bash_profile
