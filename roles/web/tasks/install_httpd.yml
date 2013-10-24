@@ -1,11 +1,17 @@
 ---
 # These tasks install http and the php modules.
 
-- name: Install git
-  apt: pkg=git state=present update_cache=yes
+- name: Install passenger
+  shell: bash --login -c "gem install passenger" creates=/usr/local/rvm/gems/ruby-{{ruby_version}}/bin/passenger
+  tags: pass
 
-- name: Install nginx
-  apt: pkg=nginx state=present update_cache=yes
+- name: Install passenger nginx module
+  shell: bash --login -c "passenger-install-nginx-module -a --auto-download --prefix=/opt/nginx" creates=/opt/nginx/sbin/nginx
+  tags: pass
+
+- name: Install nginx init.d scrit
+  template: src=init-nginx.sh dest=/etc/init.d/nginx mode=0744
+  tags: nginx
 
 #- name: insert iptables rule for httpd
 #  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="{{ httpd_port }}" insertafter="^:OUTPUT "
@@ -14,3 +20,4 @@
 
 - name: http service state
   service: name=nginx state=started enabled=yes
+  tags: nginx

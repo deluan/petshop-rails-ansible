@@ -3,3 +3,10 @@
 
 - name: ensure curl is installed
   apt: pkg=curl state=present update_cache=yes
+
+- name: ensure libcurl is installed
+  apt: pkg=libcurl4-openssl-dev state=present
+
+- name: Install git
+  apt: pkg=git state=present
+
