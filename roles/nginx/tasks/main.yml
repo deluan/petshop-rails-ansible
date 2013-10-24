@@ -1,0 +1,13 @@
+- name: Install passenger nginx module
+  shell: bash --login -c "passenger-install-nginx-module -a --auto-download --prefix=/opt/nginx" creates=/opt/nginx/sbin/nginx
+  tags:
+  - passenger
+  - nginx
+
+- name: Install nginx init.d scrit
+  template: src=init-nginx.sh dest=/etc/init.d/nginx mode=0744
+  tags: nginx
+
+- name: http service state
+  service: name=nginx state=started enabled=yes
+  tags: nginx

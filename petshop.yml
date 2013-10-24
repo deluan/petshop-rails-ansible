@@ -15,7 +15,9 @@
   sudo: true
 
   roles:
-    - web
+    - ruby19
+    - passenger
+    - nginx
 
 - name: deploy MySQL and configure the databases
   hosts: dbservers
@@ -23,4 +25,4 @@
   sudo: true
 
   roles:
-    - db
+    - mysql

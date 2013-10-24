@@ -1,0 +1,3 @@
+- name: Install passenger
+  shell: bash --login -c "gem install passenger" creates=/usr/local/rvm/gems/ruby-{{ruby_version}}/bin/passenger
+  tags: passenger
