@@ -3,16 +3,13 @@
 
 - name: apply common configuration to all nodes
   hosts: all
-  user: vagrant
-  sudo: true
 
   roles:
     - common
 
 - name: configure and deploy the webservers and application code
-  hosts: webservers
-  user: vagrant
-  sudo: true
+  hosts:
+    - www.petshop.example.com
 
   roles:
     - ruby19
@@ -20,9 +17,8 @@
     - nginx
 
 - name: deploy MySQL and configure the databases
-  hosts: dbservers
-  user: vagrant
-  sudo: true
+  hosts:
+    - db.petshop.example.com
 
   roles:
     - mysql

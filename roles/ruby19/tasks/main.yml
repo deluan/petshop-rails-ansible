@@ -1,20 +1,30 @@
 ---
 - name: Install rvm
+  remote_user: vagrant
+  sudo: true
   shell: curl -L https://get.rvm.io | bash -s stable creates=/usr/local/rvm/bin/rvm
   tags: ruby
 
 - name: Install rvm requirements
+  remote_user: vagrant
+  sudo: true
   shell: /usr/local/rvm/bin/rvm requirements
   tags: ruby
 
 - name: Install ruby
+  remote_user: vagrant
+  sudo: true
   shell: /usr/local/rvm/bin/rvm install ruby-{{ruby_version}} creates=/usr/local/rvm/rubies/ruby-{{ruby_version}}/bin/ruby
   tags: ruby
 
 - name: Copy gemset script
+  remote_user: vagrant
+  sudo: true
   template: src=rvm-gemset.sh dest=~/ mode=0744
   tags: ruby
 
 - name: Setup gemset
+  remote_user: vagrant
+  sudo: true
   shell: ~/rvm-gemset.sh
   tags: ruby
