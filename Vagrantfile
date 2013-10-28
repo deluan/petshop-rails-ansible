@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.name = node.vm.hostname
     end
 
-    aliases = %w(db.petshop.example.com)
+    aliases = %w(db.petshop.example.com db.dev.petshop.example.com db.staging.petshop.example.com)
     node.hostmanager.aliases = aliases
 
   end
@@ -42,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.name = node.vm.hostname
     end
 
-    aliases = %w(www.petshop.example.com)
+    aliases = %w(www.petshop.example.com www.dev.petshop.example.com www.staging.petshop.example.com)
     node.hostmanager.aliases = aliases
 
   end
