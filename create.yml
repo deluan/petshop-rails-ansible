@@ -1,0 +1,14 @@
+---
+- name: launch the ec2 instances
+  hosts: localhost
+  gather_facts: False
+  roles:
+    - ec2
+
+- name: configure and deploy the webservers
+  hosts: webservers
+  roles:
+    - common
+    - ruby19
+    - passenger
+    - nginx
