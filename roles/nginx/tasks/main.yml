@@ -1,5 +1,4 @@
 - name: Install passenger nginx module
-  remote_user: vagrant
   sudo: true
   shell: bash --login -c "passenger-install-nginx-module -a --auto-download --prefix=/opt/nginx" creates=/opt/nginx/sbin/nginx
   tags:
@@ -7,13 +6,11 @@
   - nginx
 
 - name: Install nginx init.d scrit
-  remote_user: vagrant
   sudo: true
   template: src=init-nginx.sh dest=/etc/init.d/nginx mode=0744
   tags: nginx
 
 - name: http service state
-  remote_user: vagrant
   sudo: true
   service: name=nginx state=started enabled=yes
   tags: nginx

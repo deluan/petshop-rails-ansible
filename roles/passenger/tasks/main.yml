@@ -1,5 +1,4 @@
 - name: Install passenger
-  remote_user: vagrant
   sudo: true
   shell: bash --login -c "gem install passenger" creates=/usr/local/rvm/gems/ruby-{{ruby_version}}/bin/passenger
   tags: passenger
