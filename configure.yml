@@ -1,0 +1,10 @@
+---
+- include: create.yml
+
+- name: configure and deploy the webservers
+  hosts: webservers
+  roles:
+    - common
+    - ruby19
+    - passenger
+    - nginx
