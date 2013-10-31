@@ -1,9 +1,9 @@
 ---
-- name: example ec2 group
+- name: create ec2 group for dbservers
   local_action:
     module: ec2_group
     name: dbservers
-    description: an example EC2 group
+    description: Opens SSH port
     region: us-east-1
     rules:
       - proto: tcp
@@ -11,4 +11,4 @@
         to_port: 22
         cidr_ip: 0.0.0.0/0
 
-- include: ../../../tasks/launch_ec2_instance.yml instance_id=i-test-db keypair=test security_group=dbservers instance_tags={{ instance_tags }} host_groupname=dbservers
+- include: ../../../tasks/launch_ec2_instance.yml instance_id=db-{{ environment }} keypair=test security_group=dbservers instance_tags={{ instance_tags }} host_groupname=db
