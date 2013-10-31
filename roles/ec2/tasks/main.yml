@@ -18,6 +18,7 @@
 - name: Launch instance
   local_action:
     id: i-test
+    instance_tags: "{{ instance_tags }}"
     module: ec2
     keypair: test
     instance_type: t1.micro

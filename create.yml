@@ -1,6 +1,6 @@
 ---
-- name: launch the ec2 instances
+- name: launch the ec2 instance for the web server
   hosts: localhost
   gather_facts: False
   roles:
-    - ec2
+    - { role: ec2, instance_tags: '{"Name": "petshop-www"}' }
