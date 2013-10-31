@@ -3,4 +3,4 @@
   hosts: localhost
   gather_facts: False
   roles:
-    - { role: ec2, instance_tags: '{"Name": "petshop-www"}' }
+    - { role: ec2_www, instance_tags: '{"Name": "petshop-www"}' }
