@@ -4,3 +4,9 @@
   gather_facts: False
   roles:
     - { role: ec2_www, instance_tags: '{"Name": "petshop-www"}' }
+
+- name: launch the ec2 instance for the db server
+  hosts: localhost
+  gather_facts: False
+  roles:
+    - { role: ec2_db, instance_tags: '{"Name": "petshop-db"}' }
