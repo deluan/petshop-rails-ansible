@@ -1,6 +1,7 @@
 - name: Install passenger nginx module
   sudo: true
   shell: bash --login -c "passenger-install-nginx-module -a --auto-download --prefix=/opt/nginx" creates=/opt/nginx/sbin/nginx
+  async: 300
   tags:
   - passenger
   - nginx
