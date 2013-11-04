@@ -15,4 +15,4 @@
         to_port: 22
         cidr_ip: 0.0.0.0/0
 
-- include: ../../../tasks/launch_ec2_instance.yml instance_id=www-{{env_name}} keypair=test security_group=webservers instance_tags={{instance_tags}} host_groupname=www hostname=www.{{env_name}}.{{domain}}
+- include: ../../../tasks/launch_ec2_instance.yml instance_id=www-{{env_name}} keypair=petshop security_group=webservers instance_tags={{instance_tags}} host_groupname=www hostname=www.{{env_name}}.{{domain}}
