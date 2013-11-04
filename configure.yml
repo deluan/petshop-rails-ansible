@@ -2,7 +2,7 @@
 - include: create.yml
 
 - name: configure and deploy the webserver
-  hosts: webservers
+  hosts: www
   roles:
     - common
     - ruby19
@@ -10,7 +10,7 @@
     - nginx
 
 - name: configure and deploy the db server
-  hosts: dbservers
+  hosts: db
   roles:
     - common
     - mysql
